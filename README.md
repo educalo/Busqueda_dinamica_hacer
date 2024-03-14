@@ -1,3 +1,6 @@
+Adaptarlo para node y js
+
+
 # Cargar datos de lado del servidor con PHP y MySQL
 
 ## Vídeo 1 🔍
