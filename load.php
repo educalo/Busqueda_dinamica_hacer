@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Script para cargar datos de lado del servidor con PHP y MySQL
- *
- * @author mroblesdev
- * @link https://github.com/mroblesdev/server-side-php
- * @license: MIT
- */
 
 require 'config.php';
 
@@ -20,6 +13,9 @@ $table = "empleados";
 $id = 'no_emp';
 
 // Campo a buscar
+//real_escape_string para evitar codigo malicioso
+//isset si existe este campo que se pasa como parametro
+//operación ternaria
 $campo = isset($_POST['campo']) ? $conn->real_escape_string($_POST['campo']) : null;
 
 // Filtrado
@@ -32,6 +28,7 @@ if ($campo != null) {
     for ($i = 0; $i < $cont; $i++) {
         $where .= $columns[$i] . " LIKE '%" . $campo . "%' OR ";
     }
+    //para quitar el ultimo OR
     $where = substr_replace($where, "", -3);
     $where .= ")";
 }
@@ -60,12 +57,14 @@ if (isset($_POST['orderCol'])) {
 }
 
 // Consulta
+//implode convierte un arreglo a un string
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table
 $where
 $sOrder
 $sLimit";
 $resultado = $conn->query($sql);
+//cuantas filas nos trae la consulta
 $num_rows = $resultado->num_rows;
 
 // Consulta para total de registro filtrados
@@ -87,6 +86,7 @@ $output['totalFiltro'] = $totalFiltro;
 $output['data'] = '';
 $output['paginacion'] = '';
 
+//fetch_assoc Obtener una fila de resultado como un array asociativo
 if ($num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
         $output['data'] .= '<tr>';
@@ -125,4 +125,5 @@ if ($totalRegistros > 0) {
     $output['paginacion'] .= '</nav>';
 }
 
+//JSON_UNESCAPED_UNICODE para que reconozca los caracteres especiales ñ....
 echo json_encode($output, JSON_UNESCAPED_UNICODE);

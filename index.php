@@ -98,6 +98,8 @@
             let orderCol = document.getElementById("orderCol").value
             let orderType = document.getElementById("orderType").value
 
+            //para poder enviar los parametros
+            //El objeto FormData se utiliza principalmente para manejar datos de formularios HTML y le permite construir y enviar datos fácilmente al servidor a través de AJAX o solicitudes de recuperación.
             let formaData = new FormData()
             formaData.append('campo', input)
             formaData.append('registros', num_registros)
@@ -139,6 +141,7 @@
             elemento.classList.toggle("asc");
             elemento.classList.toggle("desc");
 
+            //llamar a la funcion getData
             getData()
         }
 

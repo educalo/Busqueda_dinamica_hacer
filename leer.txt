@@ -1,1 +1,4 @@
+0.- Busqueda dinámica para buscar por cualquier campo de la tabla
+1.- Para visualizarlo lo tengo que poner en htdocs de xampp y acceder a traves de localhost/carpeta
+
 Adaptarlo a node
