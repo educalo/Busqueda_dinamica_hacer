@@ -24,7 +24,7 @@
                 <div class="col-auto text-start">
                     <label for="num_registros" class="col-form-label">Mostrar: </label>
                 </div>
-
+                <!-- seleccion de registros a mostrar -->
                 <div class="col-auto text-start">
                     <select name="num_registros" id="num_registros" class="form-select">
                         <option value="10">10</option>
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="col-12 col-md-4" id="nav-paginacion"></div>
-
+                <!-- para ordenar -->
                 <input type="hidden" id="pagina" value="1">
                 <input type="hidden" id="orderCol" value="0">
                 <input type="hidden" id="orderType" value="asc">
@@ -107,6 +107,7 @@
             formaData.append('orderCol', orderCol)
             formaData.append('orderType', orderType)
 
+            //se envia al archivo load.php
             fetch("load.php", {
                     method: "POST",
                     body: formaData
@@ -133,11 +134,14 @@
 
         // Función para ordenar columnas
         function ordenar(e) {
+            //console.log(e);
             let elemento = e.target;
+            //listado de las clases
             let orderType = elemento.classList.contains("asc") ? "desc" : "asc";
 
             document.getElementById('orderCol').value = elemento.cellIndex;
             document.getElementById("orderType").value = orderType;
+            //toggle: Cuando sólo hay un argumento presente: Alterna el valor de la clase; ej., si la clase existe la elimina y devuelve false, si no, la añade y devuelve true
             elemento.classList.toggle("asc");
             elemento.classList.toggle("desc");
 

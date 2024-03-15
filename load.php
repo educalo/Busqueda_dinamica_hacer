@@ -33,7 +33,7 @@ if ($campo != null) {
     $where .= ")";
 }
 
-// Limites
+// Limites para la paginación predefinido es 10
 $limit = isset($_POST['registros']) ? $conn->real_escape_string($_POST['registros']) : 10;
 $pagina = isset($_POST['pagina']) ? $conn->real_escape_string($_POST['pagina']) : 0;
 
@@ -58,6 +58,7 @@ if (isset($_POST['orderCol'])) {
 
 // Consulta
 //implode convierte un arreglo a un string
+//Se obtiene el número total de filas, se puede utilziar select count(*)
 $sql = "SELECT SQL_CALC_FOUND_ROWS " . implode(", ", $columns) . "
 FROM $table
 $where
@@ -79,7 +80,7 @@ $resTotal = $conn->query($sqlTotal);
 $row_total = $resTotal->fetch_array();
 $totalRegistros = $row_total[0];
 
-// Mostrado resultados
+// Mostrado resultados array output
 $output = [];
 $output['totalRegistros'] = $totalRegistros;
 $output['totalFiltro'] = $totalFiltro;
@@ -106,13 +107,16 @@ if ($num_rows > 0) {
 }
 
 // Paginación
+//ceil redondea hacia arriba entero
 if ($totalRegistros > 0) {
     $totalPaginas = ceil($totalFiltro / $limit);
-
+    //.= concatenar
     $output['paginacion'] .= '<nav>';
     $output['paginacion'] .= '<ul class="pagination">';
 
+    //4 enlaces de antes del enlace de pagina actual y 4 enlaces de pagina siguiente
     $numeroInicio = max(1, $pagina - 4);
+
     $numeroFin = min($totalPaginas, $numeroInicio + 9);
 
     for ($i = $numeroInicio; $i <= $numeroFin; $i++) {
