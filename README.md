@@ -1,4 +1,4 @@
-Búsqueda dinámica por cualquier campo.
+Búsqueda dinámica por cualquier campo y con paginación
 
 Para visualizarlo lo tengo que poner en htdocs de xampp y acceder a traves de localhost/carpeta/
 
