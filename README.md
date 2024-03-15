@@ -1,5 +1,4 @@
-Adaptarlo para node y js
-
+Para visualizarlo lo tengo que poner en htdocs de xampp y acceder a traves de localhost/carpeta/
 
 # Cargar datos de lado del servidor con PHP y MySQL
 
