@@ -52,7 +52,7 @@ $sOrder = "";
 if (isset($_POST['orderCol'])) {
     $orderCol = $_POST['orderCol'];
     $oderType = isset($_POST['orderType']) ? $_POST['orderType'] : 'asc';
-
+    //intval para extraer el valor entero
     $sOrder = "ORDER BY " . $columns[intval($orderCol)] . ' ' . $oderType;
 }
 
