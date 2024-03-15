@@ -1,4 +1,4 @@
-Para visualizarlo lo tengo que poner en htdocs de xampp y acceder a traves de localhost/carpeta/
+Adaptarlo a node sin php ?????????????????????
 
 # Cargar datos de lado del servidor con PHP y MySQL
 
